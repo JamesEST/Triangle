@@ -11,6 +11,7 @@ namespace Triangle
         public double a;
         public double b;
         public double c;
+        public double P;
         public Triangle(double A, double B, double C)
         {
             a = A;
@@ -34,6 +35,11 @@ namespace Triangle
             double p = 0;
             p = a + b + c;
             return p;
+        }
+        public double halfperimeter()
+        {
+            P = (a + b + c)/2;
+            return P;
         }
         public double Surface()
         {
