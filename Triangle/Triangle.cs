@@ -11,12 +11,13 @@ namespace Triangle
         public double a;// первая сторона
         public double b;// вторая сторона
         public double c;// третья сторона
-        public double P;// полупериметр
-        public Triangle(double A, double B, double C)
+        public double p;// полупериметр
+        public Triangle(double A, double B, double C, double P)
         {
             a = A;
             b = B;
             c = C;
+            p = P;
         }
 
         public string outputA()
@@ -39,8 +40,8 @@ namespace Triangle
         }
         public double halfperimeter() // Вычисление полупериметра
         {
-            P = (a + b + c)/2;
-            return P;
+            p = (a + b + c)/2;
+            return p;
         }
         public double Surface()
         {
@@ -74,9 +75,9 @@ namespace Triangle
         public double GetSetP
         {
             get
-            { return P; }
+            { return p; }
             set
-            { P = value; }
+            { p = value; }
         }
         public bool ExistTriangle
         {
