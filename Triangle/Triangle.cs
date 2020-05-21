@@ -8,16 +8,17 @@ namespace Triangle
 {
     class Triangle
     {
-        public double a;
-        public double b;
-        public double c;
-        public double P;
+        public double a;// первая сторона
+        public double b;// вторая сторона
+        public double c;// третья сторона
+        public double P;// полупериметр
         public Triangle(double A, double B, double C)
         {
             a = A;
             b = B;
             c = C;
         }
+
         public string outputA()
         {
             return Convert.ToString(a);
@@ -36,7 +37,7 @@ namespace Triangle
             p = a + b + c;
             return p;
         }
-        public double halfperimeter()
+        public double halfperimeter() // Вычисление полупериметра
         {
             P = (a + b + c)/2;
             return P;
@@ -69,6 +70,13 @@ namespace Triangle
             { return c; }
             set
             { c = value; }
+        }
+        public double GetSetP
+        {
+            get
+            { return P; }
+            set
+            { P = value; }
         }
         public bool ExistTriangle
         {
