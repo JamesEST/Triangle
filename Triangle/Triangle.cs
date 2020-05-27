@@ -11,13 +11,22 @@ namespace Triangle
         public double a;// первая сторона
         public double b;// вторая сторона
         public double c;// третья сторона
-        public double p;// полупериметр
-        public Triangle(double A, double B, double C, double P)
+        public double h;// Высота
+        public Triangle(double A, double B, double C)
         {
             a = A;
             b = B;
             c = C;
-            p = P;
+        }
+        public Triangle(double A, double B, double C, double H)
+        {
+            a = A;
+            b = B;
+            c = C;
+            h = H;
+        }
+        public Triangle() // Конструктор, создаст без указания переменов
+        {
         }
 
         public string outputA()
@@ -38,10 +47,16 @@ namespace Triangle
             p = a + b + c;
             return p;
         }
-        public double halfperimeter() // Вычисление полупериметра
+        public double perimeterforh()
         {
-            p = (a + b + c)/2;
-            return p;
+            return Perimeter() * 0.5; // Формула для вычисления
+        }
+        public double Height() // Вычисление высоту треугольника
+        {
+            double p = perimeterforh();
+            double h = 2 * Math.Sqrt(p * (p - a) * (p - b) * (p - c)) / a; // Формула для вычисления
+            return h; // Выводим высоту
+            
         }
         public double Surface()
         {
@@ -72,13 +87,13 @@ namespace Triangle
             set
             { c = value; }
         }
-        public double GetSetP
-        {
-            get
-            { return p; }
-            set
-            { p = value; }
-        }
+       // public double GetSetP
+       // {
+       //     get
+       //     { return p; }
+       //     set
+       //     { p = value; }
+       // }
         public bool ExistTriangle
         {
             get
