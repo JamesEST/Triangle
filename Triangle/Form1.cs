@@ -33,6 +33,7 @@ namespace Triangle
                 listView1.Items.Add("Сторона a");
                 listView1.Items.Add("Сторона b");
                 listView1.Items.Add("Сторона c");
+                listView1.Items.Add("Высота");
                 listView1.Items.Add("Периметр");
                 listView1.Items.Add("Площадь");
                 listView1.Items.Add("Существует?");
@@ -40,14 +41,15 @@ namespace Triangle
                 listView1.Items[0].SubItems.Add(triangle.outputA());
                 listView1.Items[1].SubItems.Add(triangle.outputB());
                 listView1.Items[2].SubItems.Add(triangle.outputC());
-                listView1.Items[3].SubItems.Add(Convert.ToString(triangle.Perimeter()));
-                listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Surface()));
-                //if (triangle.ExistTriangle) { listView1.Items[5].SubItems.Add("Cуществует"); }
-                if (a + b <= c || a + c <= b || b + c <= a) { listView1.Items[5].SubItems.Add("Не существует"); }
-                else if (a * a == b * b + c * c || b * b == c * c + a * a || c * c == a * a + b * b) { listView1.Items[5].SubItems.Add("Прямоугольный"); }
-                else if (a * a > b * b + c * c || c * c > a * a + b * b || b * b > a * a + c * c) { listView1.Items[5].SubItems.Add("Тупоугольный"); }
-                else listView1.Items[5].SubItems.Add("Остроугольный");
-                //else listView1.Items[5].SubItems.Add("Не Cуществует");
+                listView1.Items[3].SubItems.Add(Convert.ToString(triangle.Height()));//Высота
+                listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter()));
+                listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));
+                if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
+                if (a + b <= c || a + c <= b || b + c <= a) { listView1.Items[7].SubItems.Add("Не существует"); }
+                else if (a * a == b * b + c * c || b * b == c * c + a * a || c * c == a * a + b * b) { listView1.Items[7].SubItems.Add("Прямоугольный"); }
+                else if (a * a > b * b + c * c || c * c > a * a + b * b || b * b > a * a + c * c) { listView1.Items[7].SubItems.Add("Тупоугольный"); }
+                else listView1.Items[7].SubItems.Add("Остроугольный");
+                
 
 
             }

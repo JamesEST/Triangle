@@ -53,6 +53,7 @@ namespace Triangle
         }
         public double Height() // Вычисление высоту треугольника
         {
+
             double p = perimeterforh();
             double h = 2 * Math.Sqrt(p * (p - a) * (p - b) * (p - c)) / a; // Формула для вычисления
             return h; // Выводим высоту
