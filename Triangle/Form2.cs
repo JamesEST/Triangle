@@ -10,24 +10,30 @@ using System.Windows.Forms;
 
 namespace Triangle
 {
-    public partial class Form1 : Form
+    public partial class Form2 : Form
     {
-        public Form1()
+        public Form2()
         {
             InitializeComponent();
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (listView1.Items.Count > 0)
             {
                 listView1.Items.Clear(); //Очистка формы от значений
             }
-            if (txtA.Text.Length > 0 && txtB.Text.Length > 0 && txtC.Text.Length > 0) // Проверка на введённые символы
+            if (num1.Text.Length > 0 && num2.Text.Length > 0 && num3.Text.Length > 0) // Проверка на введённые символы
             {
                 double a, b, c;
-                a = Convert.ToDouble(txtA.Text);
-                b = Convert.ToDouble(txtB.Text);
-                c = Convert.ToDouble(txtC.Text);
+                a = Convert.ToDouble(num1.Text);
+                b = Convert.ToDouble(num2.Text);
+                c = Convert.ToDouble(num3.Text);
                 Triangle triangle = new Triangle(a, b, c);
                 listView1.Items.Add("Сторона a");
                 listView1.Items.Add("Сторона b");
@@ -48,56 +54,9 @@ namespace Triangle
                 else if (a * a == b * b + c * c || b * b == c * c + a * a || c * c == a * a + b * b) { listView1.Items[7].SubItems.Add("Прямоугольный"); }
                 else if (a * a > b * b + c * c || c * c > a * a + b * b || b * b > a * a + c * c) { listView1.Items[7].SubItems.Add("Тупоугольный"); }
                 else listView1.Items[7].SubItems.Add("Остроугольный");
-                
-
 
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Form2 f2 = new Form2();
-            f2.Show();
-        }
     }
 }
+
