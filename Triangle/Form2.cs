@@ -50,10 +50,10 @@ namespace Triangle
                 listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter()));
                 listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));
                 if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
-                if (a + b <= c || a + c <= b || b + c <= a) { listView1.Items[7].SubItems.Add("Не существует"); }
-                else if (a * a == b * b + c * c || b * b == c * c + a * a || c * c == a * a + b * b) { listView1.Items[7].SubItems.Add("Прямоугольный"); }
-                else if (a * a > b * b + c * c || c * c > a * a + b * b || b * b > a * a + c * c) { listView1.Items[7].SubItems.Add("Тупоугольный"); }
-                else listView1.Items[7].SubItems.Add("Остроугольный");
+                    if (a != b && a != c && b != c) { listView1.Items[7].SubItems.Add("Равносторонний"); }
+                    else if (a == b || b == c || c == a) { listView1.Items[7].SubItems.Add("Равнобедренный"); }
+                    else if (a == b && a == c) { listView1.Items[7].SubItems.Add("Разносторонний"); }
+                else listView1.Items[6].SubItems.Add("Не существует");
 
             }
         }

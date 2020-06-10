@@ -20,7 +20,9 @@ namespace Triangle
         {
             if (listView1.Items.Count > 0)
             {
-                listView1.Items.Clear(); //Очистка формы от значений
+                listView1.Items.Clear();//Очистка формы от значений
+               
+
             }
             if (txtA.Text.Length > 0 && txtB.Text.Length > 0 && txtC.Text.Length > 0) // Проверка на введённые символы
             {
@@ -43,12 +45,17 @@ namespace Triangle
                 listView1.Items[3].SubItems.Add(Convert.ToString(triangle.Height()));//Высота
                 listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter()));
                 listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));
-                if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
-                if (a + b <= c || a + c <= b || b + c <= a) { listView1.Items[7].SubItems.Add("Не существует"); }
-                else if (a * a == b * b + c * c || b * b == c * c + a * a || c * c == a * a + b * b) { listView1.Items[7].SubItems.Add("Прямоугольный"); }
-                else if (a * a > b * b + c * c || c * c > a * a + b * b || b * b > a * a + c * c) { listView1.Items[7].SubItems.Add("Тупоугольный"); }
-                else listView1.Items[7].SubItems.Add("Остроугольный");
                 
+                if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
+                    if (a == b && b == c && c == b) { listView1.Items[7].SubItems.Add("Равносторонний"); pictureBox1.Image = Properties.Resources._1; }
+                    else if (a == b || b == c || c == a) { listView1.Items[7].SubItems.Add("Равнобедренный"); pictureBox1.Image = Properties.Resources._2; }
+                    else if (a != b && a != c && b != c) { listView1.Items[7].SubItems.Add("Разносторонний"); pictureBox1.Image = Properties.Resources._3; }
+                else listView1.Items[6].SubItems.Add("Не существует");
+
+             
+
+
+
 
 
             }
@@ -98,6 +105,12 @@ namespace Triangle
         {
             Form2 f2 = new Form2();
             f2.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+
         }
     }
 }
