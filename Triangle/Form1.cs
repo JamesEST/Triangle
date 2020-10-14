@@ -96,20 +96,34 @@ namespace Triangle
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Form2 f2 = new Form2();
+            TriangleForm f2 = new TriangleForm();
             f2.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtC_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
