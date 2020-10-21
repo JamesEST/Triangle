@@ -88,13 +88,7 @@ namespace Triangle
             set
             { c = value; }
         }
-       // public double GetSetP
-       // {
-       //     get
-       //     { return p; }
-       //     set
-       //     { p = value; }
-       // }
+
         public bool ExistTriangle
         {
             get

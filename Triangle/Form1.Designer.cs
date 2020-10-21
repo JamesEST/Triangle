@@ -95,6 +95,7 @@
             this.txtA.Name = "txtA";
             this.txtA.Size = new System.Drawing.Size(144, 20);
             this.txtA.TabIndex = 2;
+            this.txtA.Text = "5";
             this.txtA.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtB
@@ -126,12 +127,13 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Uighur", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.label2.Location = new System.Drawing.Point(735, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 17);
+            this.label2.Size = new System.Drawing.Size(78, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Сторона A";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -234,6 +236,7 @@
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(1065, 419);
+            this.Controls.Add(this.txtC);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.radioButton3);
@@ -245,7 +248,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtC);
             this.Controls.Add(this.txtB);
             this.Controls.Add(this.txtA);
             this.Controls.Add(this.listView1);
