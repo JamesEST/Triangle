@@ -55,7 +55,8 @@ namespace Triangle
         {
 
             double p = perimeterforh();
-            double h = 2 * Math.Sqrt(p * (p - a) * (p - b) * (p - c)) / a; // Формула для вычисления
+            double h = Math.Round(2 * Math.Sqrt(p * (p - a) * (p - b) * (p - c)) / a); // Формула для вычисления
+            
             return h; // Выводим высоту
             
         }
@@ -64,8 +65,26 @@ namespace Triangle
             double s = 0;
             double p = 0;
             p = (a + b + c) / 2;
-            s = Math.Sqrt((p * (p - a) * (p - b) * (p - c)));
+            s = Math.Round(Math.Sqrt((p * (p - a) * (p - b) * (p - c))), 3);
             return s;
+        }
+        public double GetAplha()
+        {
+            double alpha = 0;
+            alpha = Math.Acos((a * a + c * c - b * b) / (2 * a * c))*(180/Math.PI);
+            return alpha;
+        }
+        public double GetBeta()
+        {
+            double beta = 0;
+            beta = Math.Acos((a * a + b * b - c * c) / (2 * a * b)) * (180 / Math.PI);
+            return beta;
+        }
+        public double GetGamma()
+        {
+            double gamma = 0;
+            gamma = Math.Acos((a * a + c * c - b * b) / (2 * a * c)) * (180 / Math.PI);
+            return gamma;
         }
         public double GetSetA
         {
