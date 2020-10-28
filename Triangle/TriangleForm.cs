@@ -153,7 +153,11 @@ namespace Triangle
             Controls.Add(_RadioBtnC);
             Controls.Add(_listboxinfo);
             Controls.Add(PanelTriangle);
-       
+            
+
+
+
+
             _GraphicsCan = PanelTriangle.CreateGraphics();
 
         
@@ -181,7 +185,7 @@ namespace Triangle
         {
             _LabelA.Text = "Сторона A";
             _LabelB.Text = "Сторона B";
-            //_LabelC.Text = "Угол";
+            _LabelC.Text = "Угол";
    
 
             Controls.Add(_TextBoxA);
