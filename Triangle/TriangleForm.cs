@@ -180,15 +180,16 @@ namespace Triangle
         private void _RadioBtnB_CheckedChanged(object sender, EventArgs e)
         {
             _LabelA.Text = "Сторона A";
-            _LabelB.Text = "Высота треугольника";
+            _LabelB.Text = "Сторона B";
+            //_LabelC.Text = "Угол";
    
 
             Controls.Add(_TextBoxA);
             Controls.Add(_TextBoxB);
-            Controls.Remove(_TextBoxC);
+            Controls.Add(_TextBoxC);
             Controls.Add(_LabelA);
             Controls.Add(_LabelB);
-            Controls.Remove(_LabelC);
+            Controls.Add(_LabelC);
         }
 
         private void _RadioBtnA_CheckedChanged(object sender, EventArgs e)
