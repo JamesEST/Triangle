@@ -25,9 +25,7 @@ namespace Triangle
             c = C;
             h = H;
         }
-        public Triangle() // Конструктор, создаст без указания переменов
-        {
-        }
+    
 
         public string outputA()
         {
@@ -83,7 +81,7 @@ namespace Triangle
         public double GetGamma()
         {
             double gamma = 0;
-            gamma = Math.Acos((a * a + c * c - b * b) / (2 * a * c)) * (180 / Math.PI);
+            gamma = Math.Acos((b * b + c * c - a * a) / (2 * c * b)) * (180 / Math.PI);
             return gamma;
         }
         public double GetSetA

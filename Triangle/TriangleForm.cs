@@ -210,7 +210,7 @@ namespace Triangle
 
             try
             {
-                
+                _listboxinfo.Items.Clear();
                 int result = Int32.Parse(_TextBoxA.Text);
                 a = Convert.ToDouble(_TextBoxA.Text);
                 b = Convert.ToDouble(_TextBoxB.Text);
@@ -228,7 +228,8 @@ namespace Triangle
                 _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
                 _listboxinfo.Items.Insert(6, "Существует" + " " + karim);
                 _listboxinfo.Items.Insert(7, "Угол Альфа" + " " + triangle.GetAplha());
-                _listboxinfo.Items.Insert(8, "Угол Альфа" + " " + triangle.GetBeta());
+                _listboxinfo.Items.Insert(8, "Угол Бета" + " " + triangle.GetBeta());
+                _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + triangle.GetGamma());
 
 
 
