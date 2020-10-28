@@ -24,6 +24,8 @@ namespace Triangle
         Graphics _GraphicsCan;
         Panel PanelTriangle;
         Pen pens = new Pen(Brushes.Black, 2);
+        private bool _statusRadiobtn = false;
+        private int _numberRadiobtn;
 
 
         public TriangleForm()
@@ -54,7 +56,6 @@ namespace Triangle
                 Height = 98,
                 Text = "Посчитать",
                 Font = new System.Drawing.Font("Times New Roman", 15f)
-
             };
            
             //TextBox
@@ -132,19 +133,12 @@ namespace Triangle
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 10f)
             };
            
-
-            _RadioBtnA.CheckedChanged += _RadioBtnA_CheckedChanged;
-            _RadioBtnB.CheckedChanged += _RadioBtnB_CheckedChanged;
-            _RadioBtnC.CheckedChanged += _RadioBtnC_CheckedChanged;
-
-           
-            
-
-
-
             _btnStart.Click += _btnStart_Click;
+            _RadioBtnA.CheckedChanged += _RadioBtn_CheckedChanged;
+            _RadioBtnB.CheckedChanged += _RadioBtn_CheckedChanged;
+            _RadioBtnC.CheckedChanged += _RadioBtn_CheckedChanged;
 
-
+            
             Controls.Add(_LabelMain);
             Controls.Add(_LabelTitle);
             Controls.Add(_btnStart);
@@ -154,131 +148,131 @@ namespace Triangle
             Controls.Add(_listboxinfo);
             Controls.Add(PanelTriangle);
             
-
-
-
-
             _GraphicsCan = PanelTriangle.CreateGraphics();
-
-        
-
-
-
-
         }
      
-        private void _RadioBtnC_CheckedChanged(object sender, EventArgs e)
+        private void _RadioBtn_CheckedChanged(object sender, EventArgs e)
         {
-            _LabelA.Text = "Сторона A";
-            _LabelB.Text = "Сторона B";
-            _LabelC.Text = "Угол";
+            
+            if (_RadioBtnA.Checked)
+            {
+                _LabelA.Text = "Сторона A";
+                _LabelB.Text = "Сторона B";
+                _LabelC.Text = "Сторона C";
+                Controls.Add(_TextBoxA);
+                Controls.Add(_TextBoxB);
+                Controls.Add(_TextBoxC);
+                Controls.Add(_LabelA);
+                Controls.Add(_LabelB);
+                Controls.Add(_LabelC);
+                _statusRadiobtn = true;
+                _numberRadiobtn = 1;
+            }
+            else if (_RadioBtnB.Checked)
+            {
+                _LabelA.Text = "Сторона A";
+                _LabelB.Text = "Сторона B";
+                _LabelC.Text = "Угол альфа"; 
+                Controls.Add(_TextBoxA);
+                Controls.Add(_TextBoxB);
+                Controls.Add(_TextBoxC);
+                Controls.Add(_LabelA);
+                Controls.Add(_LabelB);
+                Controls.Add(_LabelC);
+                _statusRadiobtn = true;
+                _numberRadiobtn = 2;
+            }
+            else if (_RadioBtnC.Checked)
+            {
+                Controls.Remove(_TextBoxC);
+                Controls.Remove(_LabelC);
+                _LabelA.Text = "Сторона A";
+                _LabelB.Text = "Высота";
+                Controls.Add(_TextBoxA);
+                Controls.Add(_LabelA);
+                Controls.Add(_LabelB);
+                _statusRadiobtn = true;
+                _numberRadiobtn = 2;
 
-            Controls.Add(_TextBoxA);
-            Controls.Add(_TextBoxB);
-            Controls.Add(_TextBoxC);
-            Controls.Add(_LabelA);
-            Controls.Add(_LabelB);
-            Controls.Add(_LabelC);
+            }
         }
-
-        private void _RadioBtnB_CheckedChanged(object sender, EventArgs e)
-        {
-            _LabelA.Text = "Сторона A";
-            _LabelB.Text = "Сторона B";
-            _LabelC.Text = "Угол";
-   
-
-            Controls.Add(_TextBoxA);
-            Controls.Add(_TextBoxB);
-            Controls.Add(_TextBoxC);
-            Controls.Add(_LabelA);
-            Controls.Add(_LabelB);
-            Controls.Add(_LabelC);
-        }
-
-        private void _RadioBtnA_CheckedChanged(object sender, EventArgs e)
-        {
-            _LabelA.Text = "Сторона A";
-            _LabelB.Text = "Сторона B";
-            _LabelC.Text = "Сторона C";
-
-            Controls.Add(_TextBoxA);
-            Controls.Add(_TextBoxB);
-            Controls.Add(_TextBoxC);
-            Controls.Add(_LabelA);
-            Controls.Add(_LabelB);
-            Controls.Add(_LabelC);
-        }
-
         private void _btnStart_Click(object sender, EventArgs e)
         {
-
-            try
+            if (_statusRadiobtn == true)
             {
-                _listboxinfo.Items.Clear();
-                int result = Int32.Parse(_TextBoxA.Text);
-                a = Convert.ToDouble(_TextBoxA.Text);
-                b = Convert.ToDouble(_TextBoxB.Text);
-                c = Convert.ToDouble(_TextBoxC.Text);
-                Triangle triangle = new Triangle(a, b, c);
-
-               
-
-         
-                _listboxinfo.Items.Insert(0, "Сторона a :" + " " + triangle.outputA());
-                _listboxinfo.Items.Insert(1, "Сторона b :" + " " + triangle.outputB());
-                _listboxinfo.Items.Insert(2, "Сторона c :" + " " + triangle.outputC());
-                _listboxinfo.Items.Insert(3, "Высота :" + " " + triangle.Height());
-                _listboxinfo.Items.Insert(4, "Периметр" + " " + triangle.Perimeter());
-                _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
-                _listboxinfo.Items.Insert(6, "Существует" + " " + karim);
-                _listboxinfo.Items.Insert(7, "Угол Альфа" + " " + triangle.GetAplha());
-                _listboxinfo.Items.Insert(8, "Угол Бета" + " " + triangle.GetBeta());
-                _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + triangle.GetGamma());
-
-
-
-
-                //3,4,5
-
-                _GraphicsCan.Clear(Color.White);
-
-
-                double A = triangle.a;
-                double B = triangle.b;
-                double C = triangle.c;
-                double L;
-                double H;
-
-                if (A == B && B == C)
+                try
                 {
-                    L = A / 2;
-                    H = Math.Sqrt(A * A - L * L);
+                    a = Convert.ToDouble(_TextBoxA.Text);
+                    b = Convert.ToDouble(_TextBoxB.Text);
+                    c = Convert.ToDouble(_TextBoxC.Text);
+                    Triangle triangle = new Triangle(a, b, c);
+                    
+                    if (triangle.ExistTriangle())
+                    {
+                        _listboxinfo.Items.Clear();
+                        int result = Int32.Parse(_TextBoxA.Text);
+                        
+                        _listboxinfo.Items.Insert(0, "Сторона a :" + " " + triangle.outputA());
+                        _listboxinfo.Items.Insert(1, "Сторона b :" + " " + triangle.outputB());
+                        _listboxinfo.Items.Insert(2, "Сторона c :" + " " + triangle.outputC());
+                        _listboxinfo.Items.Insert(3, "Высота :" + " " + triangle.Height());
+                        _listboxinfo.Items.Insert(4, "Периметр" + " " + triangle.Perimeter());
+                        _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
+                        _listboxinfo.Items.Insert(6, "Существует" + " " + "Да");
+                        _listboxinfo.Items.Insert(7, "Угол Альфа" + " " + triangle.GetAplha());
+                        _listboxinfo.Items.Insert(8, "Угол Бета" + " " + triangle.GetBeta());
+                        _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + triangle.GetGamma());
+                        
+                        _GraphicsCan.Clear(Color.White);
+
+
+                        double A = triangle.a;
+                        double B = triangle.b;
+                        double C = triangle.c;
+                        double L;
+                        double H;
+
+                        if (A == B && B == C)
+                        {
+                            L = A / 2;
+                            H = Math.Sqrt(A * A - L * L);
+                        }
+                        else
+                        {
+                            H = (B / C) * A;
+                            L = Math.Sqrt(A * A - H * H);
+                        }
+                    
+                        int offset = 5;
+                        int multiple = 50;
+
+                        int X = (int)L * multiple;
+                        int Y = (int)H * multiple;
+                        int side = (int)C * multiple;
+
+                        Point p1 = new Point(offset, offset);
+                        Point p2 = new Point(offset + side , offset);
+                        Point p3 = new Point(offset + X, offset + Y);
+
+                        _GraphicsCan.DrawLine(pens, p1, p2);
+                        _GraphicsCan.DrawLine(pens, p2, p3);
+                        _GraphicsCan.DrawLine(pens, p3, p1);
+                    }
+                    else
+                    {
+                        _GraphicsCan.Clear(Color.White);
+                        _listboxinfo.Items.Clear();
+                        _listboxinfo.Items.Insert(0, "Существует" + " " + "Нет");
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    H = (B / C) * A;
-                    L = Math.Sqrt(A * A - H * H);
+                    MessageBox.Show("Напиши правильное число", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
-                int offset = 5;
-                int multiple = 50;
-
-                int X = (int)L * multiple;
-                int Y = (int)H * multiple;
-                int side = (int)C * multiple;
-
-                Point p1 = new Point(offset, offset);
-                Point p2 = new Point(offset + side , offset);
-                Point p3 = new Point(offset + X, offset + Y);
-
-                _GraphicsCan.DrawLine(pens, p1, p2);
-                _GraphicsCan.DrawLine(pens, p2, p3);
-                _GraphicsCan.DrawLine(pens, p3, p1);
             }
-            catch (FormatException)
+            else if (_statusRadiobtn == false)
             {
-                MessageBox.Show("Напиши правильное число", "н");
+                MessageBox.Show("Сначало выбери как будем считать!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning );
             }
         }
 

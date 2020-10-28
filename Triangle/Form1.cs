@@ -45,13 +45,13 @@ namespace Triangle
                 listView1.Items[3].SubItems.Add(Convert.ToString(triangle.Height()));//Высота
                 listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter()));
                 listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));
-                
+                /*
                 if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
                     if (a == b && b == c && c == b) { listView1.Items[7].SubItems.Add("Равносторонний"); pictureBox1.Image = Properties.Resources._1; }
                     else if (a == b || b == c || c == a) { listView1.Items[7].SubItems.Add("Равнобедренный"); pictureBox1.Image = Properties.Resources._2; }
                     else if (a != b && a != c && b != c) { listView1.Items[7].SubItems.Add("Разносторонний"); pictureBox1.Image = Properties.Resources._3; }
                 else listView1.Items[6].SubItems.Add("Не существует");
-
+*/
              
 
 
