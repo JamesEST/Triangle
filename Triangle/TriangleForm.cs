@@ -14,13 +14,14 @@ namespace Triangle
 {
     public partial class TriangleForm : Form
     {
+        private int status = 0;
         RadioButton _RadioBtnA, _RadioBtnB, _RadioBtnC;
-        TextBox _TextBoxA, _TextBoxB, _TextBoxC;
-        Label _LabelA, _LabelB, _LabelC, _LabelTitle, _LabelMain;
+        TextBox _TextBoxA, _TextBoxB, _TextBoxC, _textBoxAngel;
+        Label _LabelA, _LabelB, _LabelC, _LabelTitle, _LabelMain, _Labelangel;
         ListBox _listboxinfo;
         Button _btnStart;
         int karim = 1;
-        public double a, b, c;
+        public double a, b, c, alpha;
         Graphics _GraphicsCan;
         Panel PanelTriangle;
         Pen pens = new Pen(Brushes.Black, 2);
@@ -77,6 +78,13 @@ namespace Triangle
                 Width = 144,
                 Height = 20
             };
+            _textBoxAngel = new TextBox()
+            {
+                Location = new Point(818, 130),
+                Width = 144,
+                Height = 20
+                
+            };
             //Label
             _LabelA = new Label()
             {
@@ -93,6 +101,12 @@ namespace Triangle
             _LabelC = new Label()
             {
                 Location = new Point(735, 103),
+                Text = "Сторона C",
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 10f)
+            };
+            _Labelangel = new Label()
+            {
+                Location = new Point(735, 130),
                 Text = "Сторона C",
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 10f)
             };
@@ -125,18 +139,12 @@ namespace Triangle
                 Text = "Две стороны и угол",
                 Font = new System.Drawing.Font("Microsoft Sans Serif", 10f)
             };
-            _RadioBtnC = new RadioButton()
-            {
-                Location = new Point(467, 96),
-                Size = new Size(162, 21),
-                Text = "Основание и высота",
-                Font = new System.Drawing.Font("Microsoft Sans Serif", 10f)
-            };
+        
            
             _btnStart.Click += _btnStart_Click;
             _RadioBtnA.CheckedChanged += _RadioBtn_CheckedChanged;
             _RadioBtnB.CheckedChanged += _RadioBtn_CheckedChanged;
-            _RadioBtnC.CheckedChanged += _RadioBtn_CheckedChanged;
+    
 
             
             Controls.Add(_LabelMain);
@@ -156,6 +164,8 @@ namespace Triangle
             
             if (_RadioBtnA.Checked)
             {
+                Controls.Remove(_Labelangel);
+                Controls.Remove(_textBoxAngel);
                 _LabelA.Text = "Сторона A";
                 _LabelB.Text = "Сторона B";
                 _LabelC.Text = "Сторона C";
@@ -166,35 +176,30 @@ namespace Triangle
                 Controls.Add(_LabelB);
                 Controls.Add(_LabelC);
                 _statusRadiobtn = true;
-                _numberRadiobtn = 1;
+                status = 1;
+
             }
             else if (_RadioBtnB.Checked)
             {
+                Controls.Remove(_TextBoxB);
+                Controls.Remove(_LabelB);
                 _LabelA.Text = "Сторона A";
-                _LabelB.Text = "Сторона B";
-                _LabelC.Text = "Угол альфа"; 
+              
+                _LabelC.Text = "Сторона C";
+                _Labelangel.Text = "Угол альфа";
+                
+                
+                
                 Controls.Add(_TextBoxA);
-                Controls.Add(_TextBoxB);
                 Controls.Add(_TextBoxC);
+                Controls.Add(_textBoxAngel);
+                Controls.Add(_Labelangel);
                 Controls.Add(_LabelA);
-                Controls.Add(_LabelB);
                 Controls.Add(_LabelC);
                 _statusRadiobtn = true;
-                _numberRadiobtn = 2;
+                status = 2;
             }
-            else if (_RadioBtnC.Checked)
-            {
-                Controls.Remove(_TextBoxC);
-                Controls.Remove(_LabelC);
-                _LabelA.Text = "Сторона A";
-                _LabelB.Text = "Высота";
-                Controls.Add(_TextBoxA);
-                Controls.Add(_LabelA);
-                Controls.Add(_LabelB);
-                _statusRadiobtn = true;
-                _numberRadiobtn = 2;
-
-            }
+           
         }
         private void _btnStart_Click(object sender, EventArgs e)
         {
@@ -203,67 +208,104 @@ namespace Triangle
                 try
                 {
                     a = Convert.ToDouble(_TextBoxA.Text);
-                    b = Convert.ToDouble(_TextBoxB.Text);
+                 
                     c = Convert.ToDouble(_TextBoxC.Text);
-                    Triangle triangle = new Triangle(a, b, c);
-                    
-                    if (triangle.ExistTriangle())
+                   
+                    Triangle triangle = new Triangle(a, b, c, alpha);
+                    if (status == 1)
                     {
-                        _listboxinfo.Items.Clear();
-                        int result = Int32.Parse(_TextBoxA.Text);
-                        
-                        _listboxinfo.Items.Insert(0, "Сторона a :" + " " + triangle.outputA());
-                        _listboxinfo.Items.Insert(1, "Сторона b :" + " " + triangle.outputB());
-                        _listboxinfo.Items.Insert(2, "Сторона c :" + " " + triangle.outputC());
-                        _listboxinfo.Items.Insert(3, "Высота :" + " " + triangle.Height());
-                        _listboxinfo.Items.Insert(4, "Периметр" + " " + triangle.Perimeter());
-                        _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
-                        _listboxinfo.Items.Insert(6, "Существует" + " " + "Да");
-                        _listboxinfo.Items.Insert(7, "Угол Альфа" + " " + triangle.GetAplha());
-                        _listboxinfo.Items.Insert(8, "Угол Бета" + " " + triangle.GetBeta());
-                        _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + triangle.GetGamma());
-                        
-                        _GraphicsCan.Clear(Color.White);
-
-
-                        double A = triangle.a;
-                        double B = triangle.b;
-                        double C = triangle.c;
-                        double L;
-                        double H;
-
-                        if (A == B && B == C)
+                        b = Convert.ToDouble(_TextBoxB.Text);
+                        if (triangle.ExistTriangle())
                         {
-                            L = A / 2;
-                            H = Math.Sqrt(A * A - L * L);
+                            _listboxinfo.Items.Clear();
+                            int result = Int32.Parse(_TextBoxA.Text);
+
+                            _listboxinfo.Items.Insert(0, "Сторона a :" + " " + triangle.outputA());
+                            _listboxinfo.Items.Insert(1, "Сторона b :" + " " + triangle.outputB(status));
+                            _listboxinfo.Items.Insert(2, "Сторона c :" + " " + triangle.outputC());
+                            
+                            
+                            _listboxinfo.Items.Insert(3, "Высота :" + " " + triangle.Height());
+                            _listboxinfo.Items.Insert(4, "Периметр" + " " + triangle.Perimeter());
+                            _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
+                            _listboxinfo.Items.Insert(6, "Существует" + " " + "Да");
+                            _listboxinfo.Items.Insert(7, "Угол Альфа" + " " + triangle.GetAplha(status));
+                            _listboxinfo.Items.Insert(8, "Угол Бета" + " " + triangle.GetBeta());
+                            _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + triangle.GetGamma());
+
+                            _GraphicsCan.Clear(Color.White);
+
+
+                            double A = triangle.a;
+                            double B = triangle.b;
+                            double C = triangle.c;
+                            double L;
+                            double H;
+
+                            if (A == B && B == C)
+                            {
+                                L = A / 2;
+                                H = Math.Sqrt(A * A - L * L);
+                            }
+                            else
+                            {
+                                H = (B / C) * A;
+                                L = Math.Sqrt(A * A - H * H);
+                            }
+
+                            int offset = 5;
+                            int multiple = 50;
+
+                            int X = (int) L * multiple;
+                            int Y = (int) H * multiple;
+                            int side = (int) C * multiple;
+
+                            Point p1 = new Point(offset, offset);
+                            Point p2 = new Point(offset + side, offset);
+                            Point p3 = new Point(offset + X, offset + Y);
+
+                            _GraphicsCan.DrawLine(pens, p1, p2);
+                            _GraphicsCan.DrawLine(pens, p2, p3);
+                            _GraphicsCan.DrawLine(pens, p3, p1);
+                        }
+                        else{
+                                _GraphicsCan.Clear(Color.White);
+                                _listboxinfo.Items.Clear();
+                                _listboxinfo.Items.Insert(0, "Существует" + " " + "Нет");
+                            }
+                    }
+                    else if (status == 2)
+                    {
+                        alpha = Convert.ToDouble(_textBoxAngel.Text);
+                        triangle.outputB(status);
+                        if (triangle.ExistTriangle())
+                        {
+                            
+                            _listboxinfo.Items.Clear();
+                            int result = Int32.Parse(_TextBoxA.Text);
+
+                            _listboxinfo.Items.Insert(0, "Сторона a :" + " " + triangle.outputA());
+                            _listboxinfo.Items.Insert(1, "Сторона b :" + " " + triangle.outputB(status));
+                            _listboxinfo.Items.Insert(2, "Сторона c :" + " " + triangle.outputC());
+                            _listboxinfo.Items.Insert(3, "Высота :" + " " + triangle.Height());
+                            _listboxinfo.Items.Insert(4, "Периметр" + " " + triangle.Perimeter());
+                            _listboxinfo.Items.Insert(5, "Площадь" + " " + triangle.Surface());
+                            _listboxinfo.Items.Insert(6, "Угол Альфа" + " " + triangle.outputalpha());
+                            _listboxinfo.Items.Insert(7, "Угол Бета" + " " + triangle.GetBeta());
+                            _listboxinfo.Items.Insert(8, "Угол Гамма" + " " + Math.Abs(180- alpha - triangle.GetBeta()).ToString());
                         }
                         else
                         {
-                            H = (B / C) * A;
-                            L = Math.Sqrt(A * A - H * H);
+                            _listboxinfo.Items.Clear();
+                            _listboxinfo.Items.Insert(0, "Существует" + " " + "Возможно");
                         }
+                       
+                    }
                     
-                        int offset = 5;
-                        int multiple = 50;
+                    
 
-                        int X = (int)L * multiple;
-                        int Y = (int)H * multiple;
-                        int side = (int)C * multiple;
-
-                        Point p1 = new Point(offset, offset);
-                        Point p2 = new Point(offset + side , offset);
-                        Point p3 = new Point(offset + X, offset + Y);
-
-                        _GraphicsCan.DrawLine(pens, p1, p2);
-                        _GraphicsCan.DrawLine(pens, p2, p3);
-                        _GraphicsCan.DrawLine(pens, p3, p1);
-                    }
-                    else
-                    {
-                        _GraphicsCan.Clear(Color.White);
-                        _listboxinfo.Items.Clear();
-                        _listboxinfo.Items.Insert(0, "Существует" + " " + "Нет");
-                    }
+                    
+                    
                 }
                 catch (FormatException)
                 {

@@ -26,7 +26,7 @@ namespace Triangle
             }
             if (txtA.Text.Length > 0 && txtB.Text.Length > 0 && txtC.Text.Length > 0) // Проверка на введённые символы
             {
-                double a, b, c;
+              /*  double a, b, c;
                 a = Convert.ToDouble(txtA.Text);
                 b = Convert.ToDouble(txtB.Text);
                 c = Convert.ToDouble(txtC.Text);
@@ -44,7 +44,7 @@ namespace Triangle
                 listView1.Items[2].SubItems.Add(triangle.outputC());
                 listView1.Items[3].SubItems.Add(Convert.ToString(triangle.Height()));//Высота
                 listView1.Items[4].SubItems.Add(Convert.ToString(triangle.Perimeter()));
-                listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));
+               /* listView1.Items[5].SubItems.Add(Convert.ToString(triangle.Surface()));*/
                 /*
                 if (triangle.ExistTriangle) { listView1.Items[6].SubItems.Add("Cуществует"); }
                     if (a == b && b == c && c == b) { listView1.Items[7].SubItems.Add("Равносторонний"); pictureBox1.Image = Properties.Resources._1; }
